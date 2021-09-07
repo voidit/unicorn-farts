@@ -3,7 +3,7 @@
 class Unicorn {
 
   constructor() {
-    // this.font = 'UnicornFarts-Regular';
+    this.font = 'UnicornFarts-Regular';
     this.font;
     this.letters = "ABCDEFGHIJKLMNOPQRSTUfghijklmnopqrstuvwxyz"; // missing letters VWXYZabcde
     this.letter = 'A';
