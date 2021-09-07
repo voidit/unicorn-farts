@@ -5,7 +5,7 @@ class Unicorn {
   constructor() {
     // this.font = 'UnicornFarts-Regular';
     this.font;
-    this.letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    this.letters = "ABCDEFGHIJKLMNOPQRSTUfghijklmnopqrstuvwxyz"; // missing letters VWXYZabcde
     this.letter = 'A';
     this.x = 60;
     this.y = 60;
@@ -15,7 +15,7 @@ class Unicorn {
   
   goLeft() {
     this.x = this.x - 60;
-    this.letter = this.letters.charAt(frameCount % 20);
+    this.letter = this.letters.charAt((frameCount % 20) + 20);
   }
   
   goRight() {
@@ -34,7 +34,7 @@ class Unicorn {
     this.myColor = color(random(255), random(255), random(255));
     fill(this.myColor);
     textFont(this.font);
-    textSize(120);
+    textSize(240);
     this.y = height / 2;
     text(this.letter, this.x, this.y);
   }
