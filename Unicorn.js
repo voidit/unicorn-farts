@@ -24,13 +24,13 @@ class Unicorn {
   }
 
   fart() {
-    this.song.play();
+    // this.song.play();
   }
 
   setup() {
     soundFormats('mp3');
-    this.font = loadFont('assets/UnicornFarts-Regular.otf');
-    this.song = loadSound('assets/doorbell.mp3');
+    // this.font = loadFont('assets/UnicornFarts-Regular.otf');
+    // this.song = loadSound('assets/doorbell.mp3');
     this.myColor = color(random(255), random(255), random(255));
     fill(this.myColor);
     textFont(this.font);
