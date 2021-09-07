@@ -15,10 +15,12 @@ class Unicorn {
   
   goLeft() {
     this.x = this.x - 60;
+    this.letter = this.letters.charAt(frameCount % 20);
   }
   
-  goLeft() {
+  goRight() {
     this.x = this.x + 60;
+    this.letter = this.letters.charAt(frameCount % 20);
   }
 
   fart() {
@@ -43,12 +45,7 @@ class Unicorn {
       this.myColor = color(random(255), random(255), random(255));
 
       this.letter = this.letters.charAt(frameCount % 20);
-      if (mouseButton == LEFT) {
-        this.x = mouseX;
-      } else {
-        this.x = mouseX - 60;
-      }
-
+      this.x = mouseX - 60;
       fill(this.myColor);
     }
 

@@ -25,7 +25,7 @@ function keyPressed() {
       unicorn.fart();
     case DOWN_ARROW:
     default:
-      brek;
+      break;
   }
   return false;
 }
