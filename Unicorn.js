@@ -10,7 +10,7 @@ class Unicorn {
     this.x = 60;
     this.y = 60;
     this.myColor = null;
-    // this.song = null;
+    this.song = null;
   }
   
   goLeft() {
@@ -24,13 +24,15 @@ class Unicorn {
   }
 
   fart() {
-    // this.song.play();
+    if (this.song) this.song.play();
+    print(this.song);
+  }
+  
+  setSong(sound) {
+    this.song = sound;
   }
 
   setup() {
-    // soundFormats('mp3');
-    // this.font = loadFont('assets/UnicornFarts-Regular.otf');
-    // this.song = loadSound('assets/doorbell.mp3');
     this.myColor = color(random(255), random(255), random(255));
     fill(this.myColor);
     textFont(this.font);
