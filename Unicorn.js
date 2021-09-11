@@ -11,15 +11,18 @@ class Unicorn {
     this.y = 60;
     this.myColor = null;
     this.song = null;
+    this.fontsize = 240;
+    this.lettersize = 60;
+    this.bounds; // holds x, y, w, h of the text's bounding box
   }
-  
+
   goLeft() {
-    this.x = this.x - 60;
+    this.x = this.x - this.lettersize;
     this.letter = this.letters.charAt((frameCount % 20) + 20);
   }
-  
+
   goRight() {
-    this.x = this.x + 60;
+    this.x = this.x + this.lettersize;
     this.letter = this.letters.charAt(frameCount % 20);
   }
 
@@ -27,16 +30,33 @@ class Unicorn {
     if (this.song) this.song.play();
     print(this.song);
   }
-  
+
   setSong(sound) {
     this.song = sound;
+  }
+
+  tikle() {
+    let halfLetter = this.lettersize / 2;
+    this.bounds = {
+      x: this.x - halfLetter,
+      y: this.y - halfLetter,
+      w: this.x + halfLetter,
+      h: this.y + halfLetter
+    };
+    // check if the mouse is inside the bounding box and tickle if so
+    if (mouseX >= this.bounds.x && mouseX <= this.bounds.x + this.bounds.w &&
+      mouseY >= this.bounds.y && mouseY <= this.bounds.y + this.bounds.h) {
+      this.x += random(-5, 5);
+      this.y += random(-5, 5);
+    }
+    return true;
   }
 
   setup() {
     this.myColor = color(random(255), random(255), random(255));
     fill(this.myColor);
     textFont(this.font);
-    textSize(240);
+    textSize(this.fontsize);
     this.y = height / 2;
     text(this.letter, this.x, this.y);
   }
@@ -49,6 +69,8 @@ class Unicorn {
       this.letter = this.letters.charAt(frameCount % 20);
       this.x = mouseX - 60;
       fill(this.myColor);
+    } else {
+      this.tikle();
     }
 
     text(this.letter, this.x, this.y);
