@@ -14,6 +14,8 @@ class Unicorn {
     this.fontsize = 240;
     this.lettersize = 60;
     this.bounds; // holds x, y, w, h of the text's bounding box
+
+    this.star = null;
   }
 
   goLeft() {
@@ -24,6 +26,16 @@ class Unicorn {
   goRight() {
     this.x = this.x + this.lettersize;
     this.letter = this.letters.charAt(frameCount % 20);
+  }
+
+  sparkle() {
+
+    noFill();
+    stroke(this.myColor);
+    strokeWeight(4);
+    this.star.draw(this.x, this.y);
+    noStroke();
+    fill(this.myColor);
   }
 
   fart() {
@@ -59,7 +71,8 @@ class Unicorn {
     textSize(this.fontsize);
     this.y = height / 2;
     text(this.letter, this.x, this.y);
-    this.song = loadSound('assets/lucky_dragons.mp3')
+    this.song = loadSound('assets/lucky_dragons.mp3');
+    this.star = new Star(this.x, this.y, 5, 70, 7);
   }
 
   draw() {
