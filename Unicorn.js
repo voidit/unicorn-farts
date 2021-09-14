@@ -27,12 +27,11 @@ class Unicorn {
   }
 
   fart() {
-    if (this.song) this.song.play();
-    print(this.song);
-  }
-
-  setSong(sound) {
-    this.song = sound;
+    if (this.song.isPlaying()) { // .isPlaying() returns a boolean
+      this.song.stop();
+    } else {
+      this.song.play();
+    }
   }
 
   tikle() {
@@ -59,6 +58,7 @@ class Unicorn {
     textSize(this.fontsize);
     this.y = height / 2;
     text(this.letter, this.x, this.y);
+    this.song = loadSound('assets/lucky_dragons.mp3')
   }
 
   draw() {
@@ -75,4 +75,6 @@ class Unicorn {
 
     text(this.letter, this.x, this.y);
   }
+
+
 }

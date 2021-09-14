@@ -6,7 +6,7 @@ let unicornFont = {};
 
 function preload() {
   unicornFont = loadFont('assets/UnicornFarts-Regular.otf');
-  soundFormats('mp3', 'ogg');
+  // soundFormats('mp3', 'ogg');
   dorbell = loadSound('assets/doorbell.mp3');
 }
 
@@ -22,8 +22,8 @@ function onFontLoaded() {
 
   // soundFormats('mp3', 'ogg');
   // dorbell = loadSound('assets/doorbell.mp3', onSoundLoaded(), recordError(message));
-  
-  unicorn.setSong(dorbell);
+
+  // unicorn.setSong(dorbell);
   return unicorn;
 }
 
@@ -41,14 +41,26 @@ function keyPressed() {
       unicorn.goRight();
       break;
     case UP_ARROW:
-      unicorn.fart();
-      break;
+      // unicorn.fart();
+      // break;
     case DOWN_ARROW:
       break;
     default:
       break;
   }
   return false;
+}
+
+function mousePressed() {
+  if (unicorn.song && unicorn.song != 'undefined') {
+    if (unicorn.song.isPlaying()) { // .isPlaying() returns a boolean
+      unicorn.song.stop();
+      background(255, 0, 0);
+    } else {
+      unicorn.song.play();
+      background(0, 255, 0);
+    }
+  }
 }
 
 function recordError(message) {
