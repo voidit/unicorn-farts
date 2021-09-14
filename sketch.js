@@ -1,5 +1,6 @@
 "use strict";
 
+let bg;
 let unicorn = {};
 let dorbell = {};
 let unicornFont = {};
@@ -8,6 +9,7 @@ function preload() {
   unicornFont = loadFont('assets/UnicornFarts-Regular.otf');
   // soundFormats('mp3', 'ogg');
   dorbell = loadSound('assets/doorbell.mp3');
+  bg = loadImage("assets/suminagashi-1.jpg");
 }
 
 function setup() {
@@ -28,7 +30,7 @@ function onFontLoaded() {
 }
 
 function draw() {
-  background('#fff');
+  background(bg);
   unicorn.draw();
 }
 
