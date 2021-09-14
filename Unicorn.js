@@ -27,6 +27,7 @@ class Unicorn {
   }
 
   fart() {
+    // Works in Safari, WebAudioAPI issues in Chrome
     if (this.song.isPlaying()) { // .isPlaying() returns a boolean
       this.song.stop();
     } else {
@@ -75,6 +76,5 @@ class Unicorn {
 
     text(this.letter, this.x, this.y);
   }
-
 
 }
