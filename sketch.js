@@ -4,20 +4,27 @@ let unicorn = {};
 let dorbell = {};
 let unicornFont = {};
 
-// function preload() {
-  // unicornFont = loadFont('assets/UnicornFarts-Regular.otf');
-  // unicorn = new Unicorn(unicornFont);
-  // soundFormats('mp3', 'ogg');
-  // dorbell = loadSound('assets/doorbell', unicorn.setSong(dorbell), recordError(message));
-// }
+function preload() {
+  unicornFont = loadFont('assets/UnicornFarts-Regular.otf');
+  soundFormats('mp3', 'ogg');
+  dorbell = loadSound('assets/doorbell.mp3');
+}
 
 function setup() {
   createCanvas(displayWidth, displayHeight);
   frameRate(15);
-  
-  unicornFont = loadFont('assets/UnicornFarts-Regular.otf');
+  onFontLoaded();
+}
+
+function onFontLoaded() {
   unicorn = new Unicorn(unicornFont);
   unicorn.setup();
+
+  // soundFormats('mp3', 'ogg');
+  // dorbell = loadSound('assets/doorbell.mp3', onSoundLoaded(), recordError(message));
+  
+  unicorn.setSong(dorbell);
+  return unicorn;
 }
 
 function draw() {
@@ -34,7 +41,7 @@ function keyPressed() {
       unicorn.goRight();
       break;
     case UP_ARROW:
-      // unicorn.fart();
+      unicorn.fart();
       break;
     case DOWN_ARROW:
       break;
@@ -44,7 +51,6 @@ function keyPressed() {
   return false;
 }
 
-function recordError(message){
+function recordError(message) {
   print(message)
 }
-
