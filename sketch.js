@@ -1,6 +1,6 @@
 "use strict";
 
-let bg;
+let bg, hellow;
 let unicorn = {};
 let dorbell = {};
 let unicornFont = {};
@@ -10,27 +10,45 @@ function preload() {
   // soundFormats('mp3', 'ogg');
   dorbell = loadSound('assets/doorbell.mp3');
   bg = loadImage("assets/suminagashi-1.jpg");
+
+  // create hellow mask
+  hellow = createImage(230, 230);
+  hellow.loadPixels();
+  for (let x = 0; x < hellow.width; x++) {
+    for (let y = 0; y < hellow.height; y++) {
+      let r = map(x + y, 0, hellow.height, 255, 0);
+      let g = map(x + y, 0, hellow.height, 255, 0);
+      let b = map(x + y, 0, hellow.height, 255, 0);
+      let a = map(y, 0, hellow.height, 255, 0);
+      hellow.set(x, y, [r, g, b, a]);
+    }
+  }
+  hellow.updatePixels();
 }
 
 function setup() {
   createCanvas(displayWidth, displayHeight);
   frameRate(15);
   onFontLoaded();
+  // bg.mask(hellow);
+  // imageMode(CENTER);
 }
 
 function onFontLoaded() {
   unicorn = new Unicorn(unicornFont);
-  unicorn.setup();
-
-  // soundFormats('mp3', 'ogg');
-  // dorbell = loadSound('assets/doorbell.mp3', onSoundLoaded(), recordError(message));
-
-  // unicorn.setSong(dorbell);
-  return unicorn;
+  return unicorn.setup();
 }
 
 function draw() {
+  // start all over again on each frame
   background(bg);
+
+  if (unicorn.song.isPlaying()) {
+    // move hellow mask along with mouse
+    image(hellow, unicorn.x - hellow.width / 2, unicorn.y - hellow.height / 2);
+  }
+
+  // draw unicorn on top
   unicorn.draw();
 }
 
