@@ -61,9 +61,10 @@ function keyPressed() {
       unicorn.goRight();
       break;
     case UP_ARROW:
-      // unicorn.fart();
-      // break;
+      unicorn.fart();
+      break;
     case DOWN_ARROW:
+      unicorn.sparkle();
       break;
     default:
       break;
