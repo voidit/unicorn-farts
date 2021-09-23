@@ -1,6 +1,6 @@
 "use strict";
 
-let bg, hellow;
+let bg, bgMasked, maskImage, hellow;
 let unicorn = {};
 let dorbell = {};
 let unicornFont = {};
@@ -10,28 +10,38 @@ function preload() {
   // soundFormats('mp3', 'ogg');
   dorbell = loadSound('assets/doorbell.mp3');
   bg = loadImage("assets/suminagashi-1.jpg");
+  bgMasked = loadImage("assets/suminagashi-blur.jpg");
+  maskImage = loadImage("assets/mask.png");
 
-  // create hellow mask
-  hellow = createImage(230, 230);
-  hellow.loadPixels();
-  for (let x = 0; x < hellow.width; x++) {
-    for (let y = 0; y < hellow.height; y++) {
-      let r = map(x + y, 0, hellow.height, 255, 0);
-      let g = map(x + y, 0, hellow.height, 255, 0);
-      let b = map(x + y, 0, hellow.height, 255, 0);
-      let a = map(y, 0, hellow.height, 255, 0);
-      hellow.set(x, y, [r, g, b, a]);
-    }
-  }
-  hellow.updatePixels();
+  // // create hellow mask
+  // hellow = createImage(230, 230);
+  // bgMasked.filter(BLUR, 3);
 }
 
 function setup() {
   createCanvas(displayWidth, displayHeight);
   frameRate(15);
+  background(bg);
+  // imageMode(CORNERS); //either CORNER, CORNERS, or CENTER
   onFontLoaded();
-  // bg.mask(hellow);
-  // imageMode(CENTER);
+}
+
+function updateMask() {
+  bgMasked.loadPixels();
+  maskImage.loadPixels();
+
+  for (let x = 0; x < maskImage.width; x++) {
+    for (let y = 0; y < maskImage.height; y++) {
+      let fromPixel = bgMasked.get(x, y);
+      let r = bgMasked.get(x, y);
+      let g = bgMasked.get(x, y);
+      let b = bgMasked.get(x, y);
+      let a = maskImage.get(x, y);
+      // writeColor(maskImage, x, y, r, g, b, a);
+      maskImage.set(x, y, r, g, b, a);
+    }
+  }
+  maskImage.updatePixels();
 }
 
 function onFontLoaded() {
@@ -41,12 +51,16 @@ function onFontLoaded() {
 
 function draw() {
   // start all over again on each frame
+  // imageMode(CORNER);
   background(bg);
+  // imageMode(CENTER); //either CORNER, CORNERS, or CENTER
+  bgMasked.mask(maskImage);
+  image(bgMasked, unicorn.magnet.x, unicorn.magnet.y, width, height);
 
-  if (unicorn.song.isPlaying()) {
-    // move hellow mask along with mouse
-    image(hellow, unicorn.x - hellow.width / 2, unicorn.y - hellow.height / 2);
-  }
+  // if (unicorn.song.isPlaying()) {
+  //   // move hellow mask along with mouse
+  //   image(hellow, unicorn.x - hellow.width / 2, unicorn.y - hellow.height / 2);
+  // }
 
   // draw unicorn on top
   unicorn.draw();
