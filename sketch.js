@@ -5,11 +5,10 @@ let unicorn = {};
 let dorbell = {};
 let unicornFont = {};
 
-function setup() {
-// function preload() {
+function preload() {
   unicornFont = loadFont('assets/UnicornFarts-Regular.otf');
   // soundFormats('mp3', 'ogg');
-  dorbell = loadSound('assets/doorbell.mp3');
+  // dorbell = loadSound('assets/doorbell.mp3');
   bg = loadImage("assets/suminagashi-1.jpg");
   bgMasked = loadImage("assets/suminagashi-blur.jpg");
   maskImage = loadImage("assets/mask.png");
@@ -17,9 +16,9 @@ function setup() {
   // // create hellow mask
   // hellow = createImage(230, 230);
   // bgMasked.filter(BLUR, 3);
-// }
+}
 
-// function setup() {
+function setup() {
   createCanvas(displayWidth, displayHeight);
   frameRate(15);
   background(bg);

@@ -82,8 +82,8 @@ class Unicorn {
     textSize(this.fontsize);
     this.location.y = height / 2;
     text(this.letter, this.location.x, this.location.y);
-    this.song = loadSound('assets/lucky_dragons.mp3');
-    // this.song = null;
+    // this.song = loadSound('assets/lucky_dragons.mp3');
+    this.song = null;
     this.star = new Star(this.x, this.y, 5, 70, 7);
   }
 
