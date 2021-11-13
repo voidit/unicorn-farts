@@ -49,10 +49,12 @@ class Unicorn {
 
   fart() {
     // Works in Safari, WebAudioAPI issues in Chrome
-    if (this.song.isPlaying()) { // .isPlaying() returns a boolean
-      this.song.stop();
-    } else {
-      this.song.play();
+    if(this.song) {
+      if (this.song.isPlaying()) { // .isPlaying() returns a boolean
+        this.song.stop();
+      } else {
+        this.song.play();
+      }
     }
   }
 
@@ -81,6 +83,7 @@ class Unicorn {
     this.location.y = height / 2;
     text(this.letter, this.location.x, this.location.y);
     this.song = loadSound('assets/lucky_dragons.mp3');
+    // this.song = null;
     this.star = new Star(this.x, this.y, 5, 70, 7);
   }
 

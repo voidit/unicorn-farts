@@ -5,7 +5,8 @@ let unicorn = {};
 let dorbell = {};
 let unicornFont = {};
 
-function preload() {
+function setup() {
+// function preload() {
   unicornFont = loadFont('assets/UnicornFarts-Regular.otf');
   // soundFormats('mp3', 'ogg');
   dorbell = loadSound('assets/doorbell.mp3');
@@ -16,9 +17,9 @@ function preload() {
   // // create hellow mask
   // hellow = createImage(230, 230);
   // bgMasked.filter(BLUR, 3);
-}
+// }
 
-function setup() {
+// function setup() {
   createCanvas(displayWidth, displayHeight);
   frameRate(15);
   background(bg);
