@@ -4,6 +4,7 @@ let bg, bgMasked, maskImage, hellow;
 let unicorn = {};
 let dorbell = {};
 let unicornFont = {};
+let fontLink = null;
 
 function preload() {
   unicornFont = loadFont('assets/UnicornFarts-Regular.otf');
@@ -22,6 +23,8 @@ function setup() {
   createCanvas(displayWidth, displayHeight);
   frameRate(15);
   background(bg);
+  fontLink = createA('./assets/UnicornFartsFont.zip', 'Download Font', '_top');
+  // fontLink.className = 'unicorns-link';
   // imageMode(CORNERS); //either CORNER, CORNERS, or CENTER
   onFontLoaded();
 }
@@ -62,6 +65,7 @@ function draw() {
   //   image(hellow, unicorn.x - hellow.width / 2, unicorn.y - hellow.height / 2);
   // }
 
+  fontLink.position(10, 10);
   // draw unicorn on top
   unicorn.draw();
 }
